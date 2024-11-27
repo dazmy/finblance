@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CardComponent } from './components/card/card.component';
 import { DecimalDirective } from './directives/decimal.directive';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +11,19 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  money = new FormControl('');
+  typeSaving = new FormControl('');
+  listTypeSaving = new FormArray<FormControl>([]);
+
+  addTypeSaving() {
+    const control = new FormControl(this.typeSaving.value);
+    this.listTypeSaving.push(control);
+  }
+
+  calculate() {
+    console.clear();
+    console.log(this.money.value);
+    console.log(this.typeSaving.value);
+    console.log(this.listTypeSaving.value.length)
+  }
 }

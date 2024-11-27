@@ -11,13 +11,20 @@
       class="border bg-gray-50 border-gray-300 rounded w-full p-2" 
       placeholder="1.000.000" 
       appDecimal
+      [formControl]="money"
       required />
   </div>
   <!-- <hr class="border border-cyan-100 rounded"> -->
   <div class="typesavings">
     <label for="type" class="block mb-2">Jenis Nabung</label>
-    <input type="text" id="type" class="border bg-gray-50 border-gray-300 rounded p-2 mr-1" placeholder="Investasi" required />
-    <button class="border p-2 bg-cyan-200 rounded">Tambah</button>
+    <input 
+      type="text" 
+      id="type" 
+      class="border bg-gray-50 border-gray-300 rounded p-2 mr-1" 
+      placeholder="Investasi" 
+      [formControl]="typeSaving"
+      required />
+    <button class="border p-2 bg-cyan-200 rounded" (click)="addTypeSaving()">Tambah</button>
   </div>
   <div class="listsavings flex flex-row gap-2 flex-wrap">
     <div class="text-sm rounded border bg-lime-600 p-2 flex flex-col gap-1">
@@ -30,7 +37,7 @@
     </div>
   </div>
   <!-- button generate card -->
-  <button class="border p-2 bg-cyan-200 rounded">Hitung</button>
+  <button class="border p-2 bg-cyan-200 rounded" (click)="calculate()">Hitung</button>
   <div class="listcard flex flex-row gap-2 flex-wrap">
     <app-card></app-card>
     <app-card></app-card>
