@@ -16,6 +16,9 @@ export class AppComponent {
   listTypeSaving = new FormArray<FormControl>([]);
 
   addTypeSaving() {
+    if (!this.typeSaving.value) {
+      return;
+    }
     const control = new FormControl(this.typeSaving.value);
     this.listTypeSaving.push(control);
     this.typeSaving.setValue('');
