@@ -18,6 +18,11 @@ export class AppComponent {
   addTypeSaving() {
     const control = new FormControl(this.typeSaving.value);
     this.listTypeSaving.push(control);
+    this.typeSaving.setValue('');
+  }
+
+  deleteTypeSaving(index: number) {
+    this.listTypeSaving.removeAt(index);
   }
 
   calculate() {

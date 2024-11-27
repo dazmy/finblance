@@ -23,18 +23,22 @@
       class="border bg-gray-50 border-gray-300 rounded p-2 mr-1" 
       placeholder="Investasi" 
       [formControl]="typeSaving"
+      (keydown.enter)="addTypeSaving()"
       required />
     <button class="border p-2 bg-cyan-200 rounded" (click)="addTypeSaving()">Tambah</button>
   </div>
-  <div class="listsavings flex flex-row gap-2 flex-wrap">
-    <div class="text-sm rounded border bg-lime-600 p-2 flex flex-col gap-1">
-      <p>Investasi (?%)</p>
-      <input type="text" class="border bg-gray-50 border-gray-300 rounded p-1" placeholder="berapa persen">
-    </div>
-    <div class="text-sm rounded border bg-lime-600 p-2 flex flex-col gap-1">
-      <p>Darurat (?%)</p>
-      <input type="text" class="border bg-gray-50 border-gray-300 rounded p-1" placeholder="berapa persen">
-    </div>
+  <div class="listsavings grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+    @for (type of listTypeSaving.value; track $index) {
+      <div class="text-sm rounded border bg-lime-600 p-2 flex flex-col gap-1">
+        <p>{{ type }} (?%)</p>
+        <div class="flex flex-row items-center gap-2">
+          <input type="text" class="flex-1 border bg-gray-50 border-gray-300 rounded p-1" placeholder="berapa persen">
+          <div class="bg-red-500 w-5 rounded-full text-center cursor-pointer" (click)="deleteTypeSaving($index)">X</div>
+        </div>
+      </div>
+    } @empty {
+      <div>Kosong BOS</div>
+    }
   </div>
   <!-- button generate card -->
   <button class="border p-2 bg-cyan-200 rounded" (click)="calculate()">Hitung</button>
