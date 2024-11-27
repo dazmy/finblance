@@ -16,7 +16,7 @@ export class AppComponent {
   listTypeSaving = new FormArray<FormControl>([]);
 
   addTypeSaving() {
-    if (!this.typeSaving.value) {
+    if (!this.typeSaving.value || !this.money.value) {
       return;
     }
     const control = new FormControl(this.typeSaving.value);
