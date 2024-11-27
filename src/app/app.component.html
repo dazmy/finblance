@@ -25,7 +25,12 @@
       [formControl]="typeSaving"
       (keydown.enter)="addTypeSaving()"
       required />
-    <button class="border p-2 bg-cyan-200 rounded" (click)="addTypeSaving()">Tambah</button>
+    <button 
+      class="border p-2 bg-cyan-200 rounded" 
+      (click)="addTypeSaving()"
+      [disabled]="!typeSaving.value">
+      Tambah
+    </button>
   </div>
   <div class="listsavings grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
     @for (type of listTypeSaving.value; track $index) {
