@@ -35,9 +35,13 @@
   <div class="listsavings grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
     @for (type of listTypeSaving.value; track $index) {
       <div class="text-sm rounded border bg-lime-600 p-2 flex flex-col gap-1">
-        <p>{{ type }} (?%)</p>
+        <p>{{ type?.name }} ({{ type?.percent }}%)</p>
         <div class="flex flex-row items-center gap-2">
-          <input type="text" class="flex-1 border bg-gray-50 border-gray-300 rounded p-1" placeholder="berapa persen">
+          <input 
+            type="text" 
+            class="flex-1 border bg-gray-50 border-gray-300 rounded p-1" 
+            placeholder="berapa persen"
+            (input)="setPercent($event, $index)">
           <div class="bg-red-500 w-5 rounded-full text-center cursor-pointer" (click)="deleteTypeSaving($index)">X</div>
         </div>
       </div>
