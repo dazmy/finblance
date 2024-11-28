@@ -21,12 +21,14 @@ export class AppComponent {
   money = new FormControl('');
   typeSaving = new FormControl('');
   listTypeSaving = new FormArray<FormControl<PercentSaving | null>>([]);
+  isCalculate = false;
 
   addTypeSaving() {
     if (!this.typeSaving.value || !this.money.value) {
       return;
     }
 
+    this.isCalculate = false;
     const data: PercentSaving = {
       name: this.typeSaving.value,
       percent: 0,
@@ -46,6 +48,7 @@ export class AppComponent {
   }
 
   deleteTypeSaving(index: number) {
+    this.isCalculate = false;
     this.listTypeSaving.removeAt(index);
   }
 
@@ -56,5 +59,6 @@ export class AppComponent {
         data.savings = data.percent / 100 * parseInt(noComma);
       };
     });
+    this.isCalculate = true;
   }
 }
