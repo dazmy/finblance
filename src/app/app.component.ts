@@ -66,6 +66,10 @@ export class AppComponent implements OnInit {
   }
 
   calculate() {
+    if (this.checkPercent() > 100) {
+      return;
+    }
+    
     this.listTypeSaving.value.forEach(data => {
       if (data && this.money.value) {
         const noComma = this.money.value.replace(/,/g, '');
@@ -77,5 +81,9 @@ export class AppComponent implements OnInit {
     localStorage.setItem('money', this.money.value!);
     localStorage.setItem('listTypeSaving', JSON.stringify(this.listTypeSaving.value));
     this.isCalculate = true;
+  }
+
+  checkPercent() {
+    return this.listTypeSaving.value.reduce((total, item) => total + (item?.percent || 0) ,0);
   }
 }
