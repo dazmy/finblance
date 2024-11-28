@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CardComponent } from './components/card/card.component';
 import { DecimalDirective } from './directives/decimal.directive';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MaxPercentDirective } from './directives/max-percent.directive';
 
 interface PercentSaving {
   name?: string;
@@ -11,7 +12,7 @@ interface PercentSaving {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CardComponent, DecimalDirective, ReactiveFormsModule],
+  imports: [CardComponent, DecimalDirective, ReactiveFormsModule, MaxPercentDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -38,7 +39,7 @@ export class AppComponent {
     const inputElement = event.target as HTMLInputElement;
     const control = this.listTypeSaving.at(index);
     if (control && control.value) {
-      control.value.percent = parseInt(inputElement.value);
+      control.value.percent = parseInt(inputElement.value) || 0;
     }
   }
 

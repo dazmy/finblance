@@ -41,6 +41,7 @@
             type="text" 
             class="flex-1 border bg-gray-50 border-gray-300 rounded p-1" 
             placeholder="berapa persen"
+            appMaxPercent
             (input)="setPercent($event, $index)">
           <div class="bg-red-500 w-5 rounded-full text-center cursor-pointer" (click)="deleteTypeSaving($index)">X</div>
         </div>
