@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   setPercent(event: Event, index: number) {
+    this.isCalculate = false;
     const inputElement = event.target as HTMLInputElement;
     const control = this.listTypeSaving.at(index);
     if (control && control.value) {
