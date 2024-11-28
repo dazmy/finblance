@@ -4,6 +4,7 @@ import { DecimalDirective } from './directives/decimal.directive';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MaxPercentDirective } from './directives/max-percent.directive';
 import { PercentSaving } from './interfaces/PercentSaving';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -67,6 +68,10 @@ export class AppComponent implements OnInit {
 
   calculate() {
     if (this.checkPercent() > 100) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Persen melebihi 100%'
+      });
       return;
     }
     
