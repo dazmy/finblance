@@ -1,4 +1,7 @@
 <div class="px-2 py-3 border border-red-500 rounded flex flex-col">
-  <h3>Judul</h3>
-  <h1>Rp. 1.000.000</h1>
+  <h3 class="text-md md:text-lg flex flex-row justify-between">
+    <p>{{ datas.name }}</p>
+    <p>{{ datas.percent }}%</p>
+  </h3>
+  <h1 class="text-lg md:text-2xl font-semibold">Rp {{ datas.savings | number: '1.0-2' }}</h1>
 </div>

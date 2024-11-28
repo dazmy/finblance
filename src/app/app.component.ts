@@ -3,12 +3,7 @@ import { CardComponent } from './components/card/card.component';
 import { DecimalDirective } from './directives/decimal.directive';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MaxPercentDirective } from './directives/max-percent.directive';
-
-interface PercentSaving {
-  name: string;
-  percent: number;
-  savings: number;
-}
+import { PercentSaving } from './interfaces/PercentSaving';
 
 @Component({
   selector: 'app-root',
