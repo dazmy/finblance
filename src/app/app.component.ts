@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardComponent } from './components/card/card.component';
 import { DecimalDirective } from './directives/decimal.directive';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -12,11 +12,28 @@ import { PercentSaving } from './interfaces/PercentSaving';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   money = new FormControl('');
   typeSaving = new FormControl('');
   listTypeSaving = new FormArray<FormControl<PercentSaving | null>>([]);
   isCalculate = false;
+
+  constructor() {}
+
+  ngOnInit() {
+    const moneyLs = localStorage.getItem('money');
+    const listTypeSavingLs = localStorage.getItem('listTypeSaving');
+
+    if (moneyLs) this.money.setValue(moneyLs);
+    if (listTypeSavingLs) {
+      const listJson = JSON.parse(listTypeSavingLs);
+      listJson.forEach((data: PercentSaving) => {
+        const control = new FormControl(data);
+        this.listTypeSaving.push(control);
+      });
+      this.isCalculate = true;
+    }
+  }
 
   addTypeSaving() {
     if (!this.typeSaving.value || !this.money.value) {
@@ -54,6 +71,10 @@ export class AppComponent {
         data.savings = data.percent / 100 * parseInt(noComma);
       };
     });
+    
+    // set to localStorage
+    localStorage.setItem('money', this.money.value!);
+    localStorage.setItem('listTypeSaving', JSON.stringify(this.listTypeSaving.value));
     this.isCalculate = true;
   }
 }
