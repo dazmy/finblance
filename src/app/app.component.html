@@ -52,7 +52,7 @@
   <button 
     class="border p-2 bg-cyan-200 rounded" 
     (click)="calculate()"
-    [disabled]="!money.value">
+    [disabled]="!money.value || !listTypeSaving.length">
     Hitung
   </button>
   <div class="listcard flex flex-row gap-2 flex-wrap">
