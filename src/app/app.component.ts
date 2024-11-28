@@ -5,8 +5,9 @@ import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MaxPercentDirective } from './directives/max-percent.directive';
 
 interface PercentSaving {
-  name?: string;
-  percent?: number;
+  name: string;
+  percent: number;
+  savings: number;
 }
 
 @Component({
@@ -29,6 +30,7 @@ export class AppComponent {
     const data: PercentSaving = {
       name: this.typeSaving.value,
       percent: 0,
+      savings: 0,
     }
     const control = new FormControl(data);
     this.listTypeSaving.push(control);
@@ -48,9 +50,11 @@ export class AppComponent {
   }
 
   calculate() {
-    console.clear();
-    console.log(this.money.value);
-    console.log(this.typeSaving.value);
-    console.log(this.listTypeSaving.value.length)
+    this.listTypeSaving.value.forEach(data => {
+      if (data && this.money.value) {
+        const noComma = this.money.value.replace(/,/g, '');
+        data.savings = data.percent / 100 * parseInt(noComma);
+      };
+    });
   }
 }
