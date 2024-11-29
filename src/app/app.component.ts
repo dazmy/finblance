@@ -43,20 +43,19 @@ export class AppComponent implements OnInit {
     }
 
     this.isCalculate = false;
-    const color = this.generateColor();
     const data: PercentSaving = {
       name: this.typeSaving.value,
       percent: 0,
       savings: 0,
-      color
+      color: this.generateColor(this.listTypeSaving.value.length),
     }
     const control = new FormControl(data);
     this.listTypeSaving.push(control);
     this.typeSaving.setValue('');
   }
 
-  generateColor() {
-    return this.colors[Math.round(Math.random() * this.colors.length)];
+  generateColor(len: number) {
+      return this.colors[len % 3];
   }
 
   setPercent(event: Event, index: number) {
