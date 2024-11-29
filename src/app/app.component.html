@@ -36,7 +36,7 @@
           (keydown.enter)="addTypeSaving()"
           required />
         <button
-          class="border p-2 bg-button-neo-yellow rounded shadow-neo-input"
+          class="border p-2 bg-button-neo-yellow rounded border-black shadow-neo-input disabled:bg-[#a4a1a0]"
           (click)="addTypeSaving()"
           [disabled]="!typeSaving.value || !money.value">
           Tambah
@@ -72,7 +72,7 @@
     </div>
     <!-- button generate card -->
     <button
-      class="border p-2 bg-button-neo-yellow rounded text-sm md:text-base shadow-neo-input"
+      class="border p-2 bg-button-neo-yellow border-black rounded text-sm md:text-base shadow-neo-input disabled:bg-[#a4a1a0]"
       (click)="calculate()"
       [disabled]="!money.value || !listTypeSaving.length">
       Hitung
