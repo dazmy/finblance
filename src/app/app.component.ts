@@ -98,6 +98,7 @@ export class AppComponent implements OnInit {
         this.money.setValue('');
         this.listTypeSaving.clear();
         localStorage.clear();
+        this.lastModified = '';
         Swal.fire({
           title: 'Sukses Reset!',
           text: 'Perubahan telah tereset.',
