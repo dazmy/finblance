@@ -7,11 +7,11 @@
   <!-- content -->
   <div class="flex flex-col gap-3 flex-1">
     <div class="flex flex-col gap-3">
-      <h1 class="font-bold text-xl">Tentukan semua kebutuhan finansialmu disini!</h1>
-      <p class="font-light text-xs">Mari rencanakan kebutuhan finansialmu agar lebih terarah!</p>
+      <h1 class="font-bold text-xl md:text-3xl">Tentukan semua kebutuhan finansialmu disini!</h1>
+      <p class="font-light text-xs md:text-base">Mari rencanakan kebutuhan finansialmu agar lebih terarah!</p>
     </div>
     <!-- input how much money do they save? -->
-    <div class="flex flex-col gap-1 text-sm">
+    <div class="flex flex-col gap-1 text-sm md:text-base">
       <label for="money">Pendapatan</label>
       <input
         type="text"
@@ -24,7 +24,7 @@
         required />
     </div>
     <!-- JENIS NABUNG -->
-    <div class="flex flex-col gap-1 text-sm">
+    <div class="flex flex-col gap-1 text-sm md:text-base">
       <label for="type">Jenis Nabung</label>
       <div class="flex flex-row gap-2">
         <input
@@ -44,7 +44,7 @@
       </div>
     </div>
     <!-- LIST TYPE SAVING -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm md:text-base">
       @for (type of listTypeSaving.value; track $index) {
         <div class="rounded border border-black shadow-neo-input p-2 flex flex-col gap-1" [style.backgroundColor]="type?.color">
           <p><span class="font-bold">{{ type?.name }}</span> ({{ type?.percent }}%)</p>
@@ -65,21 +65,21 @@
           </div>
         </div>
       } @empty {
-        <div class="py-8 text-center bg-white border border-black w-full rounded border-dashed">
+        <div class="py-8 text-center bg-white border border-black col-span-1 md:col-span-2 lg:col-span-3 rounded border-dashed">
           Kosong
         </div>
       }
     </div>
     <!-- button generate card -->
     <button
-      class="border p-2 bg-button-neo-yellow rounded text-sm shadow-neo-input"
+      class="border p-2 bg-button-neo-yellow rounded text-sm md:text-base shadow-neo-input"
       (click)="calculate()"
       [disabled]="!money.value || !listTypeSaving.length">
       Hitung
     </button>
     <!-- card generate percent * nabung -->
     @if (isCalculate) {
-      <div class="listcard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         @for (type of listTypeSaving.value; track $index) {
           <app-card [datas]="type!"></app-card>
         }
@@ -87,7 +87,7 @@
     }
   </div>
   <!-- footer -->
-  <footer class="text-xs text-center flex flex-col">
+  <footer class="text-xs md:text-sm text-center flex flex-col">
     <h1>Built with Love ❤️</h1>
   </footer>
 </div>
