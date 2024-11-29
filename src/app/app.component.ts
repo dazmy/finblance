@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
   isCalculate = false;
   colors: string[] = ['#90EE90', '#F4D738', '#FFA6F6'];
   lastModified: string = '';
+  isErrorMoney: boolean = false;
+  isErrorTypeSaving: boolean = false;
+  isErrorListTypeSaving: boolean = false;
 
   constructor() {}
 
@@ -43,10 +46,14 @@ export class AppComponent implements OnInit {
 
   addTypeSaving() {
     if (!this.typeSaving.value || !this.money.value) {
+      this.isErrorTypeSaving = !this.typeSaving.value;
+      this.isErrorMoney = !this.money.value;
       return;
     }
 
     this.isCalculate = false;
+    this.isErrorTypeSaving = false;
+    this.isErrorMoney = false;
     const data: PercentSaving = {
       name: this.typeSaving.value,
       percent: 0,
@@ -77,6 +84,8 @@ export class AppComponent implements OnInit {
   }
 
   reset() {
+    if (!this.listTypeSaving.length) return;
+
     Swal.fire({
       icon: 'question',
       title: 'Ingin mereset perubahan?',
@@ -100,6 +109,12 @@ export class AppComponent implements OnInit {
   }
 
   calculate() {
+    if (!this.money.value || !this.listTypeSaving.length) {
+      this.isErrorMoney = !this.money.value;
+      this.isErrorListTypeSaving = !this.listTypeSaving.length;
+      return;
+    }
+
     if (this.checkPercent() > 100) {
       Swal.fire({
         icon: 'error',
@@ -109,6 +124,9 @@ export class AppComponent implements OnInit {
       return;
     }
     
+    this.isErrorMoney = false;
+    this.isErrorTypeSaving = false;
+    this.isErrorListTypeSaving = false;
     this.listTypeSaving.value.forEach(data => {
       if (data && this.money.value) {
         const noComma = this.money.value.replace(/,/g, '');

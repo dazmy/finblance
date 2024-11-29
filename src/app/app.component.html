@@ -13,7 +13,12 @@
     </div>
     <!-- input how much money do they save? -->
     <div class="flex flex-col gap-1 text-sm md:text-base">
-      <label for="money">Pendapatan</label>
+      <div class="flex flex-row gap-2 items-center">
+        <label for="money">Pendapatan<span class="text-red-500">*</span></label>
+        @if (isErrorMoney) {
+          <p class="text-xs md:text-sm text-red-500">(Pendapatan tidak boleh kosong.)</p>
+        }
+      </div>
       <input
         type="text"
         id="money"
@@ -26,7 +31,12 @@
     </div>
     <!-- JENIS NABUNG -->
     <div class="flex flex-col gap-1 text-sm md:text-base">
-      <label for="type">Jenis Nabung</label>
+      <div class="flex flex-row gap-2 items-center">
+        <label for="type">Jenis Nabung<span class="text-red-500">*</span></label>
+        @if (isErrorTypeSaving) {
+          <p class="text-xs md:text-sm text-red-500">(Jenis nabung tidak boleh kosong.)</p>
+        }
+      </div>
       <div class="flex flex-row gap-2">
         <input
           type="text"
@@ -38,8 +48,7 @@
           required />
         <button
           class="border p-2 bg-button-neo-yellow rounded border-black shadow-neo-input active:shadow-neo-input-active duration-150 w-20 md:w-40"
-          (click)="addTypeSaving()"
-          [disabled]="!typeSaving.value || !money.value">
+          (click)="addTypeSaving()">
           Tambah
         </button>
       </div>
@@ -67,7 +76,11 @@
         </div>
       } @empty {
         <div class="py-8 text-center bg-white border border-black col-span-1 md:col-span-2 lg:col-span-3 rounded border-dashed">
-          Kosong
+          @if (isErrorListTypeSaving) {
+            <p class="text-red-500">(Isian ini tidak boleh kosong.)</p>
+          } @else {
+            <p>Kosong</p>
+          }
         </div>
       }
     </div>
@@ -75,14 +88,12 @@
       <!-- button generate card -->
       <button
         class="border p-2 bg-button-neo-yellow border-black rounded text-sm md:text-base shadow-neo-input active:shadow-neo-input-active duration-150 flex-1"
-        (click)="calculate()"
-        [disabled]="!money.value || !listTypeSaving.length">
+        (click)="calculate()">
         Hitung
       </button>
       <button 
         class="border p-2 bg-red-500 border-black rounded shadow-neo-input active:shadow-neo-input-active duration-150 text-sm md:text-base w-20 md:w-40"
-        (click)="reset()"
-        [disabled]="!listTypeSaving.length">
+        (click)="reset()">
         Reset
       </button>
     </div>
