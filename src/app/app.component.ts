@@ -74,6 +74,7 @@ export class AppComponent implements OnInit {
 
   reset() {
     this.isCalculate = false;
+    this.money.setValue('');
     this.listTypeSaving.clear();
     localStorage.clear();
   }
