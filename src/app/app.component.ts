@@ -137,7 +137,9 @@ export class AppComponent implements OnInit {
     // set to localStorage
     localStorage.setItem('money', this.money.value!);
     localStorage.setItem('listTypeSaving', JSON.stringify(this.listTypeSaving.value));
-    localStorage.setItem('lastModified', new Date().toString());
+    const dateString = new Date().toString();
+    localStorage.setItem('lastModified', dateString);
+    this.lastModified = dateString;
     this.isCalculate = true;
   }
 
