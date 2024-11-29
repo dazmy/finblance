@@ -42,10 +42,12 @@ export class AppComponent implements OnInit {
     }
 
     this.isCalculate = false;
+    // generate color
     const data: PercentSaving = {
       name: this.typeSaving.value,
       percent: 0,
       savings: 0,
+      color: '#FFA6F6'
     }
     const control = new FormControl(data);
     this.listTypeSaving.push(control);
