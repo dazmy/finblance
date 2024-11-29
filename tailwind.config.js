@@ -10,6 +10,9 @@ module.exports = {
       },
       backgroundColor: {
         'button-neo-yellow': '#FFF59F'
+      },
+      fontFamily: {
+        'kaushan': '"Kaushan Script"',
       }
     },
     container: {
