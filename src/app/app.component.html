@@ -18,7 +18,7 @@
         type="text"
         id="money"
         class="border border-black bg-gray-50 rounded w-full p-2 focus:outline-none shadow-neo-input"
-        placeholder="1.000.000"
+        placeholder="1,000,000"
         appDecimal
         [formControl]="money"
         (input)="isCalculate = false"
@@ -37,7 +37,7 @@
           (keydown.enter)="addTypeSaving()"
           required />
         <button
-          class="border p-2 bg-button-neo-yellow rounded border-black shadow-neo-input disabled:bg-[#a4a1a0] w-20 md:w-40"
+          class="border p-2 bg-button-neo-yellow rounded border-black shadow-neo-input active:shadow-neo-input-active duration-150 w-20 md:w-40"
           (click)="addTypeSaving()"
           [disabled]="!typeSaving.value || !money.value">
           Tambah
@@ -74,13 +74,13 @@
     <div class="flex flex-row gap-2">
       <!-- button generate card -->
       <button
-        class="border p-2 bg-button-neo-yellow border-black rounded text-sm md:text-base shadow-neo-input disabled:bg-[#a4a1a0] flex-1"
+        class="border p-2 bg-button-neo-yellow border-black rounded text-sm md:text-base shadow-neo-input active:shadow-neo-input-active duration-150 flex-1"
         (click)="calculate()"
         [disabled]="!money.value || !listTypeSaving.length">
         Hitung
       </button>
       <button 
-        class="border p-2 bg-red-500 border-black rounded shadow-neo-input text-sm md:text-base w-20 md:w-40 disabled:bg-[#a4a1a0]"
+        class="border p-2 bg-red-500 border-black rounded shadow-neo-input active:shadow-neo-input-active duration-150 text-sm md:text-base w-20 md:w-40"
         (click)="reset()"
         [disabled]="!listTypeSaving.length">
         Reset

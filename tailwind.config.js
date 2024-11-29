@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'neo-input': '3px 4px 0px black',
+        'neo-input-active': '2px 3px 0px black',
       },
       backgroundColor: {
         'button-neo-yellow': '#FFF59F'
