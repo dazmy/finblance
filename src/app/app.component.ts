@@ -5,11 +5,12 @@ import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MaxPercentDirective } from './directives/max-percent.directive';
 import { PercentSaving } from './interfaces/PercentSaving';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CardComponent, DecimalDirective, ReactiveFormsModule, MaxPercentDirective],
+  imports: [CardComponent, DecimalDirective, ReactiveFormsModule, MaxPercentDirective, DatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -19,12 +20,14 @@ export class AppComponent implements OnInit {
   listTypeSaving = new FormArray<FormControl<PercentSaving | null>>([]);
   isCalculate = false;
   colors: string[] = ['#90EE90', '#F4D738', '#FFA6F6'];
+  lastModified: string = '';
 
   constructor() {}
 
   ngOnInit() {
     const moneyLs = localStorage.getItem('money');
     const listTypeSavingLs = localStorage.getItem('listTypeSaving');
+    const lastModifiedLs = localStorage.getItem('lastModified');
 
     if (moneyLs) this.money.setValue(moneyLs);
     if (listTypeSavingLs) {
@@ -35,6 +38,7 @@ export class AppComponent implements OnInit {
       });
       this.isCalculate = true;
     }
+    if (lastModifiedLs) this.lastModified = lastModifiedLs;
   }
 
   addTypeSaving() {
@@ -115,6 +119,7 @@ export class AppComponent implements OnInit {
     // set to localStorage
     localStorage.setItem('money', this.money.value!);
     localStorage.setItem('listTypeSaving', JSON.stringify(this.listTypeSaving.value));
+    localStorage.setItem('lastModified', new Date().toString());
     this.isCalculate = true;
   }
 
