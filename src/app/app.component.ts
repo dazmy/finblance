@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   typeSaving = new FormControl('');
   listTypeSaving = new FormArray<FormControl<PercentSaving | null>>([]);
   isCalculate = false;
+  colors: string[] = ['#90EE90', '#F4D738', '#FFA6F6'];
 
   constructor() {}
 
@@ -42,16 +43,20 @@ export class AppComponent implements OnInit {
     }
 
     this.isCalculate = false;
-    // generate color
+    const color = this.generateColor();
     const data: PercentSaving = {
       name: this.typeSaving.value,
       percent: 0,
       savings: 0,
-      color: '#FFA6F6'
+      color
     }
     const control = new FormControl(data);
     this.listTypeSaving.push(control);
     this.typeSaving.setValue('');
+  }
+
+  generateColor() {
+    return this.colors[Math.round(Math.random() * this.colors.length)];
   }
 
   setPercent(event: Event, index: number) {
