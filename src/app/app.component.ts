@@ -73,17 +73,34 @@ export class AppComponent implements OnInit {
   }
 
   reset() {
-    this.isCalculate = false;
-    this.money.setValue('');
-    this.listTypeSaving.clear();
-    localStorage.clear();
+    Swal.fire({
+      icon: 'question',
+      title: 'Ingin mereset perubahan?',
+      confirmButtonText: 'Ya, reset!',
+      confirmButtonColor: '#EF4444',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.isCalculate = false;
+        this.money.setValue('');
+        this.listTypeSaving.clear();
+        localStorage.clear();
+        Swal.fire({
+          title: 'Sukses Reset!',
+          text: 'Perubahan telah tereset.',
+          icon: 'success',
+          timer: 2000
+        });
+      }
+    });
   }
 
   calculate() {
     if (this.checkPercent() > 100) {
       Swal.fire({
         icon: 'error',
-        text: 'Persen melebihi 100%'
+        text: 'Persen melebihi 100%',
+        timer: 2000
       });
       return;
     }
