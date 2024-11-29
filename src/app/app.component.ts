@@ -72,6 +72,12 @@ export class AppComponent implements OnInit {
     this.listTypeSaving.removeAt(index);
   }
 
+  reset() {
+    this.isCalculate = false;
+    this.listTypeSaving.clear();
+    localStorage.clear();
+  }
+
   calculate() {
     if (this.checkPercent() > 100) {
       Swal.fire({
